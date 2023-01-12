@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+<h1 class="top">家計簿</h1>
+<br>
+
+<div class="row">
+<div class="col-md-4">
+	
+
+
+<%= form_with model:@account, local: true do |form| %>
+
+  <div class="title">
+    <div class="form-tag">タイトル</div>
+    <%= form.text_field :title %>
+  </div>
+
+
+  <div class="content">
+    <div class="form-tag">金額</div>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="time">
+    <div class="form-tag">日付</div>
+    <%= form.date_select :start_time %>
+  </div>
+
+ <div class="submit">
+    <%= form.submit %>
+ </div>
+<% end %>
+
+
+</div>
+
+<br>
+
+
+<br>
+<div class="col-md-8">
+<%= month_calendar events: @accounts do |date, accounts| %>
+  <%= date.day %>
+
+  <% accounts.each do |account| %>
+    <div>
+      <%= link_to account.title, account_path(account.id) %><h>：</h>
+      <%= link_to account.content.to_s(:delimited), account_path(account.id) %><h>円</h>
+
+    </div>
+  <% end %>
+<% end %>
+</div>
+</div>
+</div>

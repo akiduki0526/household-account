@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<div class="show">
+<p>
+  <strong>タイトル</strong>
+  <%= @account.title %>
+</p>
+
+<p>
+  <strong>内容</strong>
+  <%= @account.content %>
+</p>
+
+<p>
+  <strong>日時</strong>
+  <%= @account.start_time.strftime("%m-%d") %>
+</p>
+
+<%= link_to '編集', edit_account_path %>
+<%= link_to '消去',account_path, method: :delete, data: { confirm: '本当に?' } %>
+<%= link_to '戻る', "/" %>
+
+<div class="col-md-8">
+<%= month_calendar events: @accounts do |date, accounts| %>
+  <%= date.day %>
+
+  <% accounts.each do |account| %>
+    <div>
+      <%= account.title%><h>：</h>
+      <%= account.content.to_s(:delimited)%><h>円</h>
+
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+
+
+</div>
+
+
