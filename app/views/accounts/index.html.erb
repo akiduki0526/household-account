@@ -1,8 +1,18 @@
 
-<p id="notice"><%= notice %></p>
+
 
 <div class="toppage">
-<h1 class="top">Household account</h1>
+<div class ="top-up">
+
+
+   <h1 class="top">Household account
+    <div class ="user">
+    <%= link_to 'ログイン', "/", class: "login" %></li>
+    <%= link_to 'ログアウト', "/", class: "login" %></li>
+    <%= link_to '新規登録', "/", class: "sign-up" %></li>
+    </div>
+   </h1>
+</div>
 <br>
 
 <div class="row">
@@ -13,18 +23,18 @@
 <%= form_with model:@account, local: true do |form| %>
 
   <div class="title">
-    <div class="form-tag">タイトル</div>
+    <h class="form-tag">タイトル</h>
     <%= form.text_field :title %>
   </div>
 
 
   <div class="content">
-    <div class="form-tag">金額</div>
+    <h class="form-tag">金額</h>
     <%= form.text_field :content %>
   </div>
 
   <div class="time">
-    <div class="form-tag">日付</div>
+    <h class="form-tag">日付</h>
     <%= form.date_select :start_time %>
   </div>
 

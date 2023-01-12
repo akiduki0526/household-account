@@ -1,10 +1,22 @@
 .toppage {
-  background-color: cornsilk;
+  background-image: url(money.webp);
+  background-size: cover;
+}
+
+.top-up{
 }
 
 .top {
- background-color: aqua;
+ background-color:burlywood;
  text-align: center;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+
+}
+
+.user {
+  font-size: 20px;
 }
 
 .col-md-8{
@@ -12,5 +24,10 @@
 }
 
 .last {
-  background-color: aqua;
+  background-color: burlywood;;
+  text-align: center;
+}
+
+.form-tag{
+  background-color: aliceblue;
 }
