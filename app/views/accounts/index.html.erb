@@ -7,9 +7,14 @@
 
    <h1 class="top">Household account
     <div class ="user">
-    <%= link_to 'ログイン', "/", class: "login" %></li>
-    <%= link_to 'ログアウト', "/", class: "login" %></li>
-    <%= link_to '新規登録', "/", class: "sign-up" %></li>
+    
+    <% if user_signed_in? %>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %>
+    <%= current_user.name%>
+    <%else%>
+    <%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
+    <%= link_to 'ログイン', new_user_session_path, class: "login" %>
+    <%end%>
     </div>
    </h1>
 </div>
@@ -21,6 +26,8 @@
 
 
 <%= form_with model:@account, local: true do |form| %>
+
+
 
   <div class="title">
     <h class="form-tag">タイトル</h>
@@ -39,12 +46,23 @@
   </div>
 
  <div class="submit">
-    <%= form.submit %>
+    <%= form.submit "COUNT"%>
  </div>
 <% end %>
 
 
 </div>
+<%i = 0%>
+<%sum = []%>
+<% @accounts.each do |account| %>
+ <%sum << account.content %>
+ <% i = i + 1%>
+<% end %>
+
+<h class="total">
+今月の出費金額：
+<%=number_to_currency(sum.sum, :unit => "¥",:precision => 0)%>
+</h>
 
 <br>
 
@@ -54,16 +72,23 @@
 <%= month_calendar events: @accounts do |date, accounts| %>
   <%= date.day %>
 
+  <%if user_signed_in?%>
   <% accounts.each do |account| %>
+    <%if current_user.id == account.user_id %>
     <div>
       <%= link_to account.title, account_path(account.id) %><h>：</h>
       <%= link_to account.content.to_s(:delimited), account_path(account.id) %><h>円</h>
-
     </div>
+    <%end%>
   <% end %>
+ <% end %>
+
+
 <% end %>
 </div>
 </div>
 </div>
 
 <div class="last">Household account</div>
+
+

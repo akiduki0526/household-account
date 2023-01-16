@@ -1,23 +1,58 @@
-<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+<div class ="top-up">
+
+<h1 class="top">Household account
+    <div class ="user">
+    <%if user_signed_in?%>
+      <%= link_to 'ログアウト', "/", class: "login" %></li>
+      <%= current_user.name%>
+      <%else%>
+      <%= link_to 'ログイン', "/", class: "login" %></li>
+      <%= link_to '新規登録', "/", class: "sign-up" %></li>
+      <%end%>
+    </div>
+   </h1>
+
 <div class="show">
-<p>
-  <strong>タイトル</strong>
-  <%= @account.title %>
-</p>
+<div class="title">
+    <h class="form-tag">タイトル
+      <%= @account.title %>
+      </h>
+</div>
 
-<p>
-  <strong>内容</strong>
-  <%= @account.content %>
-</p>
+<div class="content">
+  <h class="form-tag">金額：
+  <%= number_to_currency(@account.content, :unit =>"￥",:precision => 0) %>
+  </h>
+</div>
 
-<p>
-  <strong>日時</strong>
+  <div class="time">
+    <h class="form-tag">日付
   <%= @account.start_time.strftime("%m-%d") %>
-</p>
+  </h>
+</div>
 
-<%= link_to '編集', edit_account_path %>
-<%= link_to '消去',account_path, method: :delete, data: { confirm: '本当に?' } %>
-<%= link_to '戻る', "/" %>
+<%= link_to '編集', edit_account_path, class: "btn-edit"%>
+<%= link_to '消去',account_path, method: :delete, data: { confirm: '本当に?' }, class: "btn-destroy"%>
+<%= link_to '戻る', "/", class:"btn-back" %>
+<br>
+
+
+<%i = 0%>
+<%sum = []%>
+<% @accounts.each do |account| %>
+ <%sum << account.content %>
+ <% i = i + 1%>
+<% end %>
+
+<h class="total">
+今月の出費金額：
+<%=number_to_currency(sum.sum, :unit => "¥",:precision => 0)%>
+</h>
+
+
+
 
 <div class="col-md-8">
 <%= month_calendar events: @accounts do |date, accounts| %>
@@ -26,15 +61,14 @@
   <% accounts.each do |account| %>
     <div>
       <%= account.title%><h>：</h>
-      <%= account.content.to_s(:delimited)%><h>円</h>
+      <%= number_to_currency(account.content, :unit =>"￥",:precision => 0)%>
 
     </div>
   <% end %>
 <% end %>
 </div>
-
-
-
 </div>
+
+<div class="last">Household account</div>
 
 

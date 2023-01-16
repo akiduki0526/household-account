@@ -1,12 +1,16 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!, only: [:create,:edit,:destroy]
+
+
+
+
   def index
     @account = Account.new
     @accounts = Account.all
+
+
   end
   
-  def new
-    @account = Account.new
-  end
 
   def create
     Account.create(account_params)
@@ -42,6 +46,6 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:title, :content, :start_time)
+    params.require(:account).permit(:title, :content, :start_time).merge(user_id: current_user.id)
   end
 end

@@ -1,18 +1,33 @@
+<div class="toppage">
+<div class ="top-up">
+
+<h1 class="top">Household account
+    <div class ="user">
+    <%if user_signed_in?%>
+    <%= link_to '新規登録', "/", class: "sign-up" %></li>
+    <%=current_user.name%>
+    <%else%>
+    <%= link_to 'ログイン', "/", class: "login" %></li>
+    <%= link_to 'ログアウト', "/", class: "login" %></li>
+    <%end%>
+    </div>
+   </h1>
+
 <%= form_with(model: @account, local: true) do |form| %>
 
   <div class="title">
-    <div class="form-tag">タイトル</div>
+    <h class="form-tag">タイトル</h>
     <%= form.text_field :title %>
   </div>
 
 
   <div class="content">
-    <div class="form-tag">内容</div>
+    <h class="form-tag">内容</h>
     <%= form.text_field :content %>
   </div>
 
     <div class="time">
-    <div class="form-tag">時間</div>
+    <h class="form-tag">時間</h>
     <%= form.date_select :start_time %>
   </div>
 
@@ -22,8 +37,9 @@
   </div>
 <% end %>
 
+<h class = "back">
 <%= link_to '戻る', "/" %>
-
+</h>
 
 
 <div class="col-md-8">
@@ -39,3 +55,5 @@
   <% end %>
 <% end %>
 </div>
+
+<div class="last">Household account</div>
