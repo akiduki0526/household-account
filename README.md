@@ -12,7 +12,9 @@ Household-Account
 
 <br>
 
-## URL※	デプロイ済みのURLを記載。デプロイが済んでいない場合は、デプロイが完了次第記載すること。
+## URL※	
+
+https://household-account.onrender.com/
 
 <br>
 
