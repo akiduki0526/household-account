@@ -58,3 +58,9 @@ gem 'simple_calendar', '~> 2.0'
 gem 'pry-rails'
 
 gem 'devise'
+
+gem 'active_hash'
+
+group :production do
+  gem 'pg'
+end

@@ -1,24 +1,136 @@
-# README
+## アプリケーション名
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Household-Account
 
-Things you may want to cover:
+<br>
 
-* Ruby version
+## アプリケーション概要	
 
-* System dependencies
+このアプリケーションでは家計簿の管理が可能です。
+また、ユーザー登録機能を実装しているため、ユーザーごとに家計簿が管理可能であり、
+家族から単身世帯まで、普段家計簿を利用する人達をターゲットにしています。
 
-* Configuration
+<br>
 
-* Database creation
+## URL※	デプロイ済みのURLを記載。デプロイが済んでいない場合は、デプロイが完了次第記載すること。
 
-* Database initialization
+<br>
 
-* How to run the test suite
+## テスト用アカウント
 
-* Services (job queues, cache servers, search engines, etc.)
+・NAME：山田
 
-* Deployment instructions
+・e-mail：yamada@yamada.jp
 
-* ...
+・PASS：yamada1234
+
+<br>
+
+## 利用方法	
+
+### ・ログイン
+TPOページにアクセス後、画面右上のログインボタンをクリックするとログインページに遷移
+登録ずみのe-mail,Passを入力し、「sign in」ボタンをクリックすることでログインが可能
+
+### ・ログアウト
+ログイン後、TOPページ右上のログアウトボタンをクリックする事でログアウトが可能。
+
+### ・新規登録
+ログアウト状態でTOPページ右上の新規登録ボタンをクリックすると新規登録ページに遷移
+Name,e-mail,Passを入力し、「sign up」ボタンをクリックする事で新規登録が完了
+
+
+### ・出費金額の登録
+出費金額は「タイトル」に出費項目名を記載。
+(例：食費、病院費、電気代、etc...)
+金額は「金額」欄に半角数字を記載
+「日付」欄には出費が発生した日にちをプルダウンで選択
+最後に「count」ボタンをクリックする事で出費金額と項目がページ下部のカレンダーに反映される。
+
+[![Image from Gyazo](https://i.gyazo.com/15b5b9aa5e4f8387c5a6c54822f579ce.png)](https://gyazo.com/15b5b9aa5e4f8387c5a6c54822f579ce)
+
+### ・出費詳細の表示
+
+出費詳細はカレンダーに登録された出費項目、もしくは金額をクリックする事で詳細表示ページに遷移可能
+
+<br>
+
+### ・出費項目、出費金額の修正
+
+一度登録した出費項目、金額は修正が可能
+詳細ページの画面左に表示されている編集ページボタンをクリックする事で
+編集ページに遷移。
+編集ページのフォームから上書きしたい出費項目と費用を入力し、「count」ボタンをクリックする事で上書き登録が可能。
+
+<br>
+
+### ・出費内容の削除
+一度登録した出費内容は削除が可能。
+詳細ページの左に表示されている削除ボタンをクリックする事で削除が完了。
+削除が完了後は自動でTOPページに遷移される。
+
+<br>
+
+[![Image from Gyazo](https://i.gyazo.com/87478fbe19b85740e05a78ff2d6bf01c.png)](https://gyazo.com/87478fbe19b85740e05a78ff2d6bf01c)
+
+
+
+## アプリケーションを作成した背景
+
+このアプリケーションは一般世帯から単身世帯までの社会人をターゲットに作成されたアプリである。
+昨今、老後に必要な資金の問題によって、単身世帯であろうが一般世帯であろうが貯蓄を蓄えることは、今後人生を送るにおいて必須の条件となっている。
+このアプリケーションでは生活するにおいて出費される金額、項目を見える化し、少しでも出費を抑え込むことを目的に作成したアプリである。
+
+
+
+
+<br>
+
+
+
+## 要件定義書
+
+https://docs.google.com/spreadsheets/d/1wJYLwXfLwQ-A9YGKwQRlBJu0ClNdrj15Ms4GS90hYNc/edit#gid=982722306
+
+
+<br>
+
+
+## データベース設計
+[![Image from Gyazo](https://i.gyazo.com/1adec333b2ff974d5834ae7517788bfc.png)](https://gyazo.com/1adec333b2ff974d5834ae7517788bfc)
+
+
+<br>
+
+## 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/302e6fabf8298fa6d1d9208eb2809bd4.png)](https://gyazo.com/302e6fabf8298fa6d1d9208eb2809bd4)
+
+
+<br>
+
+## 開発環境
+
+・開発言語：Ruby
+・開発環境：Ruby on Rails Ver Ruby on Rails Ver 6.0.0
+
+
+<br>
+
+## ローカルでの動作方法
+
+以下コマンドを順に実行。
+%git clone https://github.com/akiduki0526/household-account
+%cd household-account
+%bundle install
+%yarn install
+
+<br>
+
+## 工夫したポイント
+
+このアプリケーションを制作した動機は、自身も日常から家計簿アプリを使用していたためです。
+世の中に家計簿アプリは数多くありますが、出費金額と出費項目をカレンダーで一覧表示できるアプリケーションは中々無く、日頃からこのようなアプリがあれば良いのにと考えていました。
+また、本アプリケーションを開発する際に工夫したこととしては、スケジュール通りにタスクを進行することを常に意識していました。
+開発期間は１週間であったため、時間を無駄にすることを避けるために、
+各機能ごとに何時間かけるかをアプリ作成当初に綿密に決めてから製作に着手しました。
+当初に計画を立てていたことから１週間ほどで計画していた機能の実装は完了させることができ、アプリケーションを完了させることができたと考えます。

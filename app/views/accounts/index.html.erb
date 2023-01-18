@@ -22,7 +22,6 @@
 
 <div class="row">
 <div class="col-md-4">
-	
 
 
 <%= form_with model:@account, local: true do |form| %>
@@ -30,9 +29,9 @@
 
 
   <div class="title">
-    <h class="form-tag">タイトル</h>
-    <%= form.text_field :title %>
-  </div>
+    <h class="form-tag">費用項目</h>
+  <%= form.collection_select(:title_id, Title.all, :id, :name, {}) %>
+</div>
 
 
   <div class="content">
@@ -55,7 +54,9 @@
 <%i = 0%>
 <%sum = []%>
 <% @accounts.each do |account| %>
+<%if user_signed_in? && current_user.id == account.user_id%>
  <%sum << account.content %>
+ <%end%>
  <% i = i + 1%>
 <% end %>
 
@@ -76,7 +77,7 @@
   <% accounts.each do |account| %>
     <%if current_user.id == account.user_id %>
     <div>
-      <%= link_to account.title, account_path(account.id) %><h>：</h>
+      <%= link_to account.title.name, account_path(account.id) %><h>：</h>
       <%= link_to account.content.to_s(:delimited), account_path(account.id) %><h>円</h>
     </div>
     <%end%>

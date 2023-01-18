@@ -16,8 +16,8 @@
 
 <div class="show">
 <div class="title">
-    <h class="form-tag">タイトル
-      <%= @account.title %>
+    <h class="form-tag">費用項目：
+      <%= @account.title.name %>
       </h>
 </div>
 
@@ -42,9 +42,12 @@
 <%i = 0%>
 <%sum = []%>
 <% @accounts.each do |account| %>
+<%if user_signed_in? && current_user.id == account.user_id%>
  <%sum << account.content %>
+ <%end%>
  <% i = i + 1%>
 <% end %>
+
 
 <h class="total">
 今月の出費金額：
@@ -58,14 +61,18 @@
 <%= month_calendar events: @accounts do |date, accounts| %>
   <%= date.day %>
 
+  <%if user_signed_in?%>
   <% accounts.each do |account| %>
+    <%if current_user.id == account.user_id %>
     <div>
-      <%= account.title%><h>：</h>
+      <%= account.title.name%><h>：</h>
       <%= number_to_currency(account.content, :unit =>"￥",:precision => 0)%>
 
     </div>
   <% end %>
 <% end %>
+<%end%>
+<%end%>
 </div>
 </div>
 

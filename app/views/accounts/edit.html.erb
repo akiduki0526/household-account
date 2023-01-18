@@ -4,25 +4,26 @@
 <h1 class="top">Household account
     <div class ="user">
     <%if user_signed_in?%>
-    <%= link_to '新規登録', "/", class: "sign-up" %></li>
+    <%= link_to 'ログアウト', "/", class: "login" %></li>
     <%=current_user.name%>
     <%else%>
     <%= link_to 'ログイン', "/", class: "login" %></li>
-    <%= link_to 'ログアウト', "/", class: "login" %></li>
+    <%= link_to '新規登録', "/", class: "sign-up" %></li>
     <%end%>
     </div>
    </h1>
 
 <%= form_with(model: @account, local: true) do |form| %>
 
-  <div class="title">
-    <h class="form-tag">タイトル</h>
-    <%= form.text_field :title %>
-  </div>
+   <div class="title">
+    <h class="form-tag">費用項目</h>
+  <%= form.collection_select(:title_id, Title.all, :id, :name, {}) %>
+</div>
+
 
 
   <div class="content">
-    <h class="form-tag">内容</h>
+    <h class="form-tag">金額</h>
     <%= form.text_field :content %>
   </div>
 
@@ -47,13 +48,15 @@
   <%= date.day %>
 
   <% accounts.each do |account| %>
+      <%if current_user.id == account.user_id %>
     <div>
-      <%= account.title%><h>：</h>
+      <%= account.title.name%><h>：</h>
       <%= account.content.to_s(:delimited)%><h>円</h>
 
     </div>
   <% end %>
 <% end %>
 </div>
+<%end%>
 
 <div class="last">Household account</div>

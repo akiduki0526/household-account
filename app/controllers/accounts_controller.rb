@@ -46,6 +46,6 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:title, :content, :start_time).merge(user_id: current_user.id)
+    params.require(:account).permit(:title_id, :content, :start_time).merge(user_id: current_user.id)
   end
 end
